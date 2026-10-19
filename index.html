@@ -1,0 +1,381 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>رسالة من مجهول 🌊</title>
+
+<style>
+*{box-sizing:border-box}
+:root{--blue:#087ee8;--dark:#06172e;--glass:rgba(4,25,54,.78)}
+body{
+ margin:0;font-family:Tahoma,Arial,sans-serif;color:white;
+ min-height:100vh;background:#031b3b;overflow-x:hidden
+}
+#ocean{position:fixed;inset:0;z-index:-2;overflow:hidden;
+ background:linear-gradient(180deg,#031b3b,#075ca5 50%,#00a9cf)}
+.wave{position:absolute;width:220%;height:240px;left:-60%;
+ bottom:-65px;border-radius:43%;background:rgba(66,202,255,.22);
+ animation:wave 10s linear infinite}
+.wave:nth-child(2){bottom:-85px;background:rgba(0,102,204,.35);
+ animation-duration:15s;animation-direction:reverse}
+.wave:nth-child(3){bottom:-115px;background:rgba(130,232,255,.17);
+ animation-duration:20s}
+@keyframes wave{from{transform:rotate(0deg)}
+ to{transform:rotate(360deg)}}
+.bubble{position:absolute;bottom:-40px;border-radius:50%;
+ background:rgba(255,255,255,.18);animation:rise linear infinite}
+@keyframes rise{to{transform:translateY(-115vh);opacity:0}}
+header{text-align:center;padding:25px 12px 10px}
+.logo{font-size:42px}
+h1{margin:8px 0;font-size:28px}
+header p{color:#d6f4ff;margin:8px}
+.container{width:min(94%,480px);margin:15px auto 35px}
+.card{background:var(--glass);border:1px solid #80dfff66;
+ border-radius:20px;padding:20px;margin-bottom:16px;
+ box-shadow:0 12px 35px #00152b55;backdrop-filter:blur(12px)}
+h2{font-size:20px;margin:0 0 16px}
+h3{font-size:16px}
+input,textarea,button,select{
+ width:100%;font:inherit;border-radius:11px;padding:12px;
+ margin:6px 0;border:1px solid #80cfff66
+}
+input,textarea,select{background:#061d3b;color:white;outline:none}
+input::placeholder,textarea::placeholder{color:#a9cce4}
+input:focus,textarea:focus{border-color:#51dcff}
+button{background:linear-gradient(110deg,#0785ef,#00bcd4);
+ color:white;border:0;font-weight:bold;cursor:pointer}
+button:active{transform:scale(.98)}
+button.secondary{background:#193c60}
+button.danger{background:#923f55}
+.small{font-size:12px;color:#b8d9ef;line-height:1.8}
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.tabs button{margin:0}
+.tabs button.active{background:#fff;color:#07599d}
+.hidden{display:none!important}
+.notice{padding:11px;border-radius:10px;background:#07375b;
+ color:#d7f6ff;font-size:13px;line-height:1.8;margin:10px 0}
+.error{color:#ffb6b6}.success{color:#9effcf}
+.profile{text-align:center}
+.avatar{width:85px;height:85px;object-fit:cover;border-radius:50%;
+ border:3px solid #61ddff;background:#123e61}
+.idbox{background:#062344;border:1px dashed #54d7ff;
+ padding:12px;border-radius:10px;word-break:break-all;margin:10px 0}
+nav{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:15px}
+nav button{font-size:12px;padding:12px 3px;margin:0}
+nav button.active{background:white;color:#07599d}
+.message{background:#082747;border:1px solid #3e86b3;
+ padding:13px;border-radius:12px;margin:10px 0;overflow-wrap:anywhere}
+.message .meta{font-size:12px;color:#a9d5ef;margin-bottom:8px}
+.message p{white-space:pre-wrap;line-height:1.8}
+.message .reply{background:#123a5e;padding:9px;border-radius:8px;
+ margin-top:8px}
+footer{text-align:center;font-size:12px;color:#c2e6ff;padding:10px}
+label{font-size:13px;color:#d9f2ff;display:block;margin-top:8px}
+</style>
+</head>
+
+<body>
+<div id="ocean">
+ <div class="wave"></div><div class="wave"></div><div class="wave"></div>
+</div>
+
+<header>
+ <div class="logo">🌊 💌</div>
+ <h1>رسالة من مجهول</h1>
+ <p>رسالتك قد تصل من حيث لا تتوقع...</p>
+</header>
+
+<div class="container">
+
+<!-- تسجيل الدخول -->
+<section id="auth">
+ <div class="card">
+  <div class="tabs">
+   <button id="loginTab" class="active" onclick="showAuth('login')">تسجيل الدخول</button>
+   <button id="registerTab" onclick="showAuth('register')">إنشاء حساب جديد</button>
+  </div>
+
+  <form id="loginForm">
+   <h2>مرحبًا بعودتك 👋</h2>
+   <input id="loginName" placeholder="اسم المستخدم" required autocomplete="username">
+   <input id="loginPass" type="password" placeholder="كلمة المرور" required autocomplete="current-password">
+   <button>دخول إلى حسابي</button>
+  </form>
+
+  <form id="registerForm" class="hidden">
+   <h2>أنشئ عالمك الخاص 🌊</h2>
+   <input id="newUsername" placeholder="اسم المستخدم (بالإنجليزية أو العربية)" required maxlength="24" autocomplete="username">
+   <input id="newDisplay" placeholder="اسم الحساب الذي سيظهر للناس" required maxlength="30">
+   <input id="newPass" type="password" placeholder="كلمة المرور (8 أحرف على الأقل)" required minlength="8" autocomplete="new-password">
+   <input id="confirmPass" type="password" placeholder="تأكيد كلمة المرور" required minlength="8">
+   <button>إنشاء حساب والحصول على ID</button>
+   <p class="small">اختر كلمة مرور تجريبية هنا. هذا النموذج المحلي ليس مناسبًا لكلمات مرور حقيقية.</p>
+  </form>
+  <p id="authNotice" class="small"></p>
+ </div>
+</section>
+
+<!-- التطبيق -->
+<section id="app" class="hidden">
+ <div class="card profile">
+  <img id="avatar" class="avatar" alt="الصورة الشخصية">
+  <h2 id="displayName"></h2>
+  <p id="bioView" class="small">لا توجد نبذة بعد</p>
+  <div class="idbox">معرّف حسابك<br><strong id="myId"></strong></div>
+  <button class="secondary" onclick="copyId()">📋 نسخ ID</button>
+  <button class="secondary" onclick="showPage('profile')">✏️ تعديل الملف الشخصي</button>
+ </div>
+
+ <nav>
+  <button id="nav-send" class="active" onclick="showPage('send')">✉️ إرسال</button>
+  <button id="nav-inbox" onclick="showPage('inbox')">📥 الوارد</button>
+  <button id="nav-profile" onclick="showPage('profile')">👤 حسابي</button>
+ </nav>
+
+ <div id="page-send" class="card">
+  <h2>إرسال رسالة 💌</h2>
+  <form id="sendForm">
+   <label for="recipientId">ID الشخص الذي تريد مراسلته</label>
+   <input id="recipientId" placeholder="مثال: SEA-A1B2C3D4" required>
+   <label for="messageText">اكتب رسالتك</label>
+   <textarea id="messageText" rows="5" maxlength="1500" placeholder="اكتب ما تريد قوله..." required></textarea>
+   <label for="identity">كيف تريد إرسال الرسالة؟</label>
+   <select id="identity">
+    <option value="anonymous">مجهول الهوية 👻</option>
+    <option value="known">باسم حسابي 👤</option>
+   </select>
+   <button>إرسال الرسالة 🌊</button>
+   <p id="sendNotice" class="small"></p>
+  </form>
+ </div>
+
+ <div id="page-inbox" class="card hidden">
+  <h2>الرسائل الواردة 📥</h2>
+  <p class="small">الرسائل التي وصلتك ستظهر هنا.</p>
+  <div id="inboxList"></div>
+ </div>
+
+ <div id="page-profile" class="card hidden">
+  <h2>تعديل ملفك الشخصي 👤</h2>
+  <form id="profileForm">
+   <label>اسم الحساب</label>
+   <input id="editDisplay" maxlength="30" required>
+   <label>نبذة عنك</label>
+   <textarea id="editBio" rows="3" maxlength="200" placeholder="اكتب نبذة قصيرة عن نفسك"></textarea>
+   <label>صورة الحساب</label>
+   <input id="editPhoto" type="file" accept="image/*">
+   <button>حفظ التعديلات</button>
+  </form>
+  <button class="danger" onclick="logout()">تسجيل الخروج</button>
+ </div>
+</section>
+
+<footer>رسالة من مجهول 🌊 | نسخة تجريبية محلية</footer>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const DB = "sea_messages_demo_v1";
+const SESSION = "sea_messages_session_v1";
+
+let db = loadDB();
+let current = null;
+
+function loadDB(){
+ try{
+  const d=JSON.parse(localStorage.getItem(DB));
+  if(d && Array.isArray(d.users) && Array.isArray(d.messages)) return d;
+ }catch(e){}
+ return {users:[],messages:[]};
+}
+function saveDB(){
+ localStorage.setItem(DB,JSON.stringify(db));
+}
+function makeId(){
+ let id;
+ do{
+  const bytes=new Uint8Array(8);
+  if(window.crypto && crypto.getRandomValues){
+   crypto.getRandomValues(bytes);
+  }else{
+   for(let i=0;i<bytes.length;i++)bytes[i]=Math.floor(Math.random()*256);
+  }
+  id="SEA-"+Array.from(bytes,b=>b.toString(16).padStart(2,"0")).join("").toUpperCase();
+ }while(db.users.some(u=>u.id===id));
+ return id;
+}
+function cleanText(s){return String(s||"").trim()}
+function showAuth(which){
+ $("loginForm").classList.toggle("hidden",which!=="login");
+ $("registerForm").classList.toggle("hidden",which!=="register");
+ $("loginTab").classList.toggle("active",which==="login");
+ $("registerTab").classList.toggle("active",which==="register");
+ $("authNotice").textContent="";
+}
+function say(id,text,cls=""){
+ const el=$(id);el.textContent=text;el.className=cls;
+}
+$("registerForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ const username=cleanText($("newUsername").value).toLowerCase();
+ const display=cleanText($("newDisplay").value);
+ const pass=$("newPass").value;
+ if(!/^[\p{L}\p{N}_.-]{3,24}$/u.test(username)){
+  say("authNotice","اسم المستخدم يجب أن يكون من 3 إلى 24 حرفًا أو رقمًا.","error");return;
+ }
+ if(db.users.some(u=>u.username===username)){
+  say("authNotice","اسم المستخدم مستخدم بالفعل. اختر اسمًا آخر.","error");return;
+ }
+ if(pass!==$("confirmPass").value){
+  say("authNotice","كلمتا المرور غير متطابقتين.","error");return;
+ }
+ if(pass.length<8){
+  say("authNotice","كلمة المرور يجب ألا تقل عن 8 أحرف.","error");return;
+ }
+ const user={
+  username,display,pass,id:makeId(),bio:"",
+  photo:"",created:Date.now()
+ };
+ db.users.push(user);saveDB();
+ loginUser(user);
+});
+$("loginForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ const username=cleanText($("loginName").value).toLowerCase();
+ const pass=$("loginPass").value;
+ const user=db.users.find(u=>u.username===username && u.pass===pass);
+ if(!user){say("authNotice","بيانات الدخول غير صحيحة أو الحساب غير موجود.","error");return}
+ loginUser(user);
+});
+function loginUser(user){
+ current=user;
+ sessionStorage.setItem(SESSION,user.id);
+ $("auth").classList.add("hidden");
+ $("app").classList.remove("hidden");
+ refreshProfile();
+ showPage("send");
+}
+function refreshProfile(){
+ if(!current)return;
+ $("displayName").textContent=current.display;
+ $("myId").textContent=current.id;
+ $("bioView").textContent=current.bio||"لا توجد نبذة بعد";
+ $("avatar").src=current.photo||avatarDefault();
+ $("editDisplay").value=current.display;
+ $("editBio").value=current.bio||"";
+}
+function avatarDefault(){
+ return "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(
+ '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="50" fill="#164c76"/><text x="50" y="65" text-anchor="middle" font-size="48">🌊</text></svg>'
+ );
+}
+function showPage(page){
+ ["send","inbox","profile"].forEach(p=>{
+  $("page-"+p).classList.toggle("hidden",p!==page);
+  $("nav-"+p).classList.toggle("active",p===page);
+ });
+ if(page==="inbox")renderInbox();
+ if(page==="profile")refreshProfile();
+}
+$("sendForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ const id=cleanText($("recipientId").value).toUpperCase();
+ const body=cleanText($("messageText").value);
+ const recipient=db.users.find(u=>u.id===id);
+ if(!recipient){say("sendNotice","هذا الـID غير موجود. تحقق منه وحاول مجددًا.","error");return}
+ if(recipient.id===current.id){say("sendNotice","لا يمكنك إرسال رسالة إلى حسابك نفسه.","error");return}
+ if(!body){say("sendNotice","اكتب رسالة أولًا.","error");return}
+ const identity=$("identity").value;
+ db.messages.push({
+  id:makeId(),to:recipient.id,from:current.id,
+  anonymous:identity==="anonymous",body,
+  date:Date.now(),read:false
+ });
+ saveDB();
+ $("messageText").value="";
+ say("sendNotice","تم حفظ الرسالة في هذا النموذج التجريبي.","success");
+});
+function renderInbox(){
+ const list=$("inboxList");
+ list.replaceChildren();
+ const messages=db.messages.filter(m=>m.to===current.id)
+  .sort((a,b)=>b.date-a.date);
+ if(!messages.length){
+  list.textContent="لا توجد رسائل حتى الآن 💙";return;
+ }
+ messages.forEach(m=>{
+  const box=document.createElement("article");box.className="message";
+  const meta=document.createElement("div");meta.className="meta";
+  const sender=db.users.find(u=>u.id===m.from);
+  meta.textContent=(m.anonymous?"👻 مرسل مجهول":
+   "👤 "+(sender?sender.display:"حساب غير موجود"))+
+   " • "+new Date(m.date).toLocaleString("ar-EG");
+  const body=document.createElement("p");body.textContent=m.body;
+  box.append(meta,body);
+  if(!m.read){
+   const mark=document.createElement("button");
+   mark.className="secondary";mark.textContent="تحديد كمقروءة";
+   mark.onclick=()=>{m.read=true;saveDB();renderInbox()};
+   box.append(mark);
+  }
+  list.append(box);
+ });
+}
+$("profileForm").addEventListener("submit",async e=>{
+ e.preventDefault();
+ current.display=cleanText($("editDisplay").value);
+ current.bio=cleanText($("editBio").value);
+ const file=$("editPhoto").files[0];
+ if(file){
+  if(!file.type.startsWith("image/")){
+   alert("اختر ملف صورة صالحًا.");return;
+  }
+  if(file.size>2*1024*1024){
+   alert("حجم الصورة يجب ألا يتجاوز 2 ميجابايت.");return;
+  }
+  try{
+   current.photo=await new Promise((resolve,reject)=>{
+    const reader=new FileReader();
+    reader.onload=()=>resolve(reader.result);
+    reader.onerror=reject;
+    reader.readAsDataURL(file);
+   });
+  }catch(err){alert("تعذر قراءة الصورة.");return}
+ }
+ saveDB();refreshProfile();
+ alert("تم حفظ الملف الشخصي.");
+});
+function copyId(){
+ if(navigator.clipboard && window.isSecureContext){
+  navigator.clipboard.writeText(current.id)
+   .then(()=>alert("تم نسخ ID"))
+   .catch(()=>prompt("انسخ ID:",current.id));
+ }else prompt("انسخ ID:",current.id);
+}
+function logout(){
+ current=null;sessionStorage.removeItem(SESSION);
+ $("app").classList.add("hidden");
+ $("auth").classList.remove("hidden");
+ $("loginForm").reset();showAuth("login");
+}
+function restoreSession(){
+ const id=sessionStorage.getItem(SESSION);
+ const user=db.users.find(u=>u.id===id);
+ if(user)loginUser(user);
+}
+for(let i=0;i<22;i++){
+ const b=document.createElement("i");
+ b.className="bubble";
+ const size=4+Math.random()*12;
+ b.style.width=size+"px";b.style.height=size+"px";
+ b.style.left=Math.random()*100+"%";
+ b.style.animationDuration=(8+Math.random()*15)+"s";
+ b.style.animationDelay=(-Math.random()*18)+"s";
+ $("ocean").append(b);
+}
+restoreSession();
+</script>
+</body>
+</html>
